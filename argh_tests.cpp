@@ -727,21 +727,21 @@ TEST_CASE("Test const correctness")
    CHECK(cmdl["x"]);
    CHECK(cmdl[{"x"}]);
 
-   [](argh::parser const& cmdl)
+   [](argh::parser const& cmdl_ref)
    {
-      CHECK(1 == cmdl.pos_args().size());
-      CHECK(1 == cmdl.size());
+      CHECK(1 == cmdl_ref.pos_args().size());
+      CHECK(1 == cmdl_ref.size());
 
-      for (auto arg : cmdl)
+      for (auto arg : cmdl_ref)
          CHECK(std::to_string(42) == arg);
 
-      for (auto arg : cmdl.pos_args())
+      for (auto arg : cmdl_ref.pos_args())
          CHECK(std::to_string(42) == arg);
 
-      for (auto arg : cmdl.flags())
+      for (auto arg : cmdl_ref.flags())
          CHECK("x" == arg);
 
-      for (auto arg : cmdl.params())
+      for (auto arg : cmdl_ref.params())
       {
          CHECK("a" == arg.first);
          CHECK("1" == arg.second);
