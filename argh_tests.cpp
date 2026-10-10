@@ -417,14 +417,14 @@ TEST_CASE("Interpret single-dash arg as multi-flag")
 
 TEST_CASE("Handles const char versions as expected")
 {
-   {    
+   {
       const char* argv[] = { "0", "-a", "1", "-b", "2", "3", "4" };
       int argc = sizeof(argv) / sizeof(argv[0]);
       auto cmdl = parser(argc, argv);
       CHECK(5 == cmdl.pos_args().size());
       CHECK(2 == cmdl.flags().size());
    }
-   {    
+   {
       const char* argv[] = { "0", "-a", "1", "-b", "2", "3", "4" };
       int argc = sizeof(argv) / sizeof(argv[0]);
       auto cmdl = parser(argc, argv);
@@ -864,7 +864,7 @@ TEST_CASE("Test adding duplicate flags")
 TEST_CASE("Test parsing single with add_params")
 {
     const char fixture[] = "abc-123";
-    const char* argv[] = { "-a",fixture, nullptr };
+    const char* argv[] = { "-a", fixture, nullptr };
     parser cmdl;
     cmdl.add_params("a");
     cmdl.parse(argv);
@@ -875,7 +875,7 @@ TEST_CASE("Test parsing single with add_params")
 TEST_CASE("Test parsing multiple with add_param")
 {
     const char fixture[] = "abc-123";
-    const char* argv[] = { "-a",fixture, "-b", "2", "-c", "3", nullptr };
+    const char* argv[] = { "-a", fixture, "-b", "2", "-c", "3", nullptr };
     parser cmdl;
     cmdl.add_param({"a", "b", "c"});
     cmdl.parse(argv);
