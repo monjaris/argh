@@ -883,3 +883,17 @@ TEST_CASE("Test parsing multiple with add_param")
     CHECK(cmdl({"a", "b", "c"}));
     CHECK(fixture == cmdl({"a"}).str());
 }
+
+TEST_CASE("Test multidimensional subscript operator")
+{
+    const char* argv[] = { "-a", "5", "-b", "-c" };
+    parser cmdl;
+
+    cmdl.parse(argv);
+
+    if constexpr (__cplusplus < 202302) CHECK(doctest::Result{true}); return;
+
+    if (cmdl["-a", "--xxx"]) {
+        CHECK(doctest::Result{true});
+    }
+}
